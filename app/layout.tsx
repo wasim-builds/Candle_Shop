@@ -3,9 +3,7 @@ import { Gravitas_One } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { CartProvider } from '@/contexts/CartContext'
-import { WishlistProvider } from '@/contexts/WishlistContext'
-import { ThemeProvider } from '@/contexts/ThemeContext'
+import Providers from '@/components/Providers'
 
 const gravitasOne = Gravitas_One({ 
   subsets: ['latin'],
@@ -26,17 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${gravitasOne.variable} font-gravitas bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors`}>
-        <ThemeProvider>
-          <CartProvider>
-            <WishlistProvider>
-              <Header />
-              <main className="min-h-screen">
-                {children}
-              </main>
-              <Footer />
-            </WishlistProvider>
-          </CartProvider>
-        </ThemeProvider>
+        <Providers>
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )
