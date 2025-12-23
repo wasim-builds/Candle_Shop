@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { products, collections } from '@/data/products'
+import HeroSection from '@/components/HeroSection'
+import Newsletter from '@/components/Newsletter'
 
 export default function Home() {
   const featuredProducts = products.slice(0, 8)
@@ -7,23 +9,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-900 py-20 px-4">
-        <div className="max-w-[1600px] mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-gravitas font-bold text-gray-900 dark:text-white mb-4">
-            Professor's candle-shop
-          </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Premium handmade candles for every season and occasion.
-            Create the perfect ambiance in your home.
-          </p>
-          <Link
-            href="/shop"
-            className="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
-          >
-            Shop Now
-          </Link>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Featured Products */}
       <section className="py-16 px-4">
@@ -132,6 +118,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Section */}
+      <Newsletter />
     </div>
   )
 }

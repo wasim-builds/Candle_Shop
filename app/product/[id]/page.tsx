@@ -8,6 +8,7 @@ import { FiHeart, FiShoppingCart, FiArrowLeft } from 'react-icons/fi'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import Link from 'next/link'
+import ProductGallery from '@/components/ProductGallery'
 
 export default function ProductPage() {
   const params = useParams()
@@ -35,8 +36,8 @@ export default function ProductPage() {
   const displayPrice = product.originalPrice
     ? product.originalPrice
     : selectedVariant
-    ? selectedVariant.price
-    : product.price
+      ? selectedVariant.price
+      : product.price
 
   const handleAddToCart = () => {
     addToCart(product, selectedVariant || undefined, quantity)
@@ -54,22 +55,19 @@ export default function ProductPage() {
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Product Image */}
+        {/* Product Gallery */}
         <div className="relative">
-          <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <ProductGallery
+            images={product.images || [product.image]}
+            productName={product.name}
+          />
           {product.isSale && (
-            <span className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded text-sm font-semibold">
+            <span className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded text-sm font-semibold z-10">
               SALE
             </span>
           )}
           {product.isNew && (
-            <span className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded text-sm font-semibold">
+            <span className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded text-sm font-semibold z-10">
               NEW
             </span>
           )}
@@ -110,11 +108,10 @@ export default function ProductPage() {
                   <button
                     key={variant.id}
                     onClick={() => setSelectedVariant(variant)}
-                    className={`px-4 py-2 border-2 rounded ${
-                      selectedVariant?.id === variant.id
-                        ? 'border-primary-600 bg-primary-50 text-primary-700'
-                        : 'border-gray-300 hover:border-primary-400'
-                    } ${!variant.inStock ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`px-4 py-2 border-2 rounded ${selectedVariant?.id === variant.id
+                      ? 'border-primary-600 bg-primary-50 text-primary-700'
+                      : 'border-gray-300 hover:border-primary-400'
+                      } ${!variant.inStock ? 'opacity-50 cursor-not-allowed' : ''}`}
                     disabled={!variant.inStock}
                   >
                     {variant.name}
@@ -175,11 +172,10 @@ export default function ProductPage() {
             </button>
             <button
               onClick={() => toggleWishlist(product)}
-              className={`p-3 rounded-lg border-2 ${
-                isInWishlist(product.id)
-                  ? 'border-primary-600 bg-primary-50 text-primary-700'
-                  : 'border-gray-300 hover:border-primary-400'
-              } transition-colors`}
+              className={`p-3 rounded-lg border-2 ${isInWishlist(product.id)
+                ? 'border-primary-600 bg-primary-50 text-primary-700'
+                : 'border-gray-300 hover:border-primary-400'
+                } transition-colors`}
               title={isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
             >
               <FiHeart className="w-5 h-5" />

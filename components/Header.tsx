@@ -7,6 +7,9 @@ import { FiShoppingCart, FiHeart, FiUser, FiMenu, FiX, FiSearch, FiLogOut, FiSun
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { useTheme } from '@/contexts/ThemeContext'
+import SearchBar from './SearchBar'
+import { collections } from '@/data/products'
+import CartPreview from './CartPreview'
 
 export default function Header() {
   const router = useRouter()
@@ -62,17 +65,6 @@ export default function Header() {
     router.push('/')
   }
 
-  const collections = [
-    'Christmas Special',
-    'Autumn Fever',
-    'Home Decor',
-    'Spring Flower',
-    'Aromatherapy',
-    'Whipped Wax',
-    'Waxmelts',
-    'Limited Editions',
-  ]
-
   return (
     <header className={`sticky top-0 z-50 bg-white dark:bg-gray-800 ${isScrolled ? 'shadow-md' : ''} transition-shadow`}>
       {/* Top Bar */}
@@ -97,16 +89,33 @@ export default function Header() {
               <button className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center gap-1">
                 COLLECTIONS
               </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border dark:border-gray-700">
-                {collections.map((collection) => (
-                  <Link
-                    key={collection}
-                    href={`/collection/${collection.toLowerCase().replace(' ', '-')}`}
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200"
-                  >
-                    {collection}
-                  </Link>
-                ))}
+              <div className="absolute top-full left-0 mt-2 w-80 bg-white dark:bg-gray-800 shadow-xl rounded-lg py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border dark:border-gray-700 z-50">
+                <div className="grid grid-cols-2 gap-2 px-3 max-h-96 overflow-y-auto">
+                  {collections.slice(0, 8).map((collection) => (
+                    <Link
+                      key={collection.id}
+                      href={`/collection/${collection.slug}`}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors group/item"
+                    >
+                      {collection.image && (
+                        <img
+                          src={collection.image}
+                          alt={collection.name}
+                          className="w-12 h-12 object-cover rounded"
+                        />
+                      )}
+                      <span className="text-sm dark:text-gray-200 group-hover/item:text-primary-600 dark:group-hover/item:text-primary-400 flex-1">
+                        {collection.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/shop"
+                  className="block mt-2 pt-2 px-4 text-center text-sm text-primary-600 dark:text-primary-400 hover:underline border-t dark:border-gray-700"
+                >
+                  View All Collections →
+                </Link>
               </div>
             </div>
             <Link href="/shop" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
@@ -133,9 +142,7 @@ export default function Header() {
                 <FiSun className="w-5 h-5" />
               )}
             </button>
-            <button className="p-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-              <FiSearch className="w-5 h-5" />
-            </button>
+            <SearchBar />
             <Link
               href="/wishlist"
               className="relative p-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
@@ -147,17 +154,23 @@ export default function Header() {
                 </span>
               )}
             </Link>
-            <Link
-              href="/cart"
-              className="relative p-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            >
-              <FiShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <span className="absolute top-0 right-0 bg-primary-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
+            <div className="relative group">
+              <Link
+                href="/cart"
+                className="relative p-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              >
+                <FiShoppingCart className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute top-0 right-0 bg-primary-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+              {/* Cart Preview Dropdown */}
+              <div className="absolute top-full right-0 mt-2 bg-white dark:bg-gray-800 shadow-xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border dark:border-gray-700 z-50">
+                <CartPreview />
+              </div>
+            </div>
             {user ? (
               <div className="relative user-menu-container">
                 <button
@@ -240,14 +253,14 @@ export default function Header() {
             <div className="py-2">
               <p className="font-semibold mb-2 dark:text-gray-200">COLLECTIONS</p>
               <div className="pl-4 space-y-1">
-                {collections.map((collection) => (
+                {collections.slice(0, 8).map((collection) => (
                   <Link
-                    key={collection}
-                    href={`/collection/${collection.toLowerCase().replace(' ', '-')}`}
+                    key={collection.id}
+                    href={`/collection/${collection.slug}`}
                     className="block py-1 text-sm hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-300"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {collection}
+                    {collection.name}
                   </Link>
                 ))}
               </div>

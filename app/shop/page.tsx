@@ -71,13 +71,13 @@ export default function ShopPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filters Sidebar */}
         <aside className={`lg:w-56 ${showFilters ? 'block' : 'hidden'} lg:block`}>
-          <div className="bg-white p-6 rounded-lg shadow-md sticky top-24">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md sticky top-24">
             <div className="mb-6">
-              <h2 className="font-bold text-lg mb-4">Sort by</h2>
+              <h2 className="font-bold text-lg mb-4 dark:text-white">Sort by</h2>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               >
                 <option value="popularity">Popularity</option>
                 <option value="latest">Newness</option>
@@ -87,15 +87,15 @@ export default function ShopPage() {
             </div>
 
             <div className="mb-6">
-              <h2 className="font-bold text-lg mb-4">Categories</h2>
+              <h2 className="font-bold text-lg mb-4 dark:text-white">Categories</h2>
               <div className="space-y-2">
                 {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
                     className={`block w-full text-left p-2 rounded ${selectedCategory === category
-                      ? 'bg-primary-100 text-primary-700 font-semibold'
-                      : 'hover:bg-gray-100'
+                      ? 'bg-primary-100 text-primary-700 font-semibold dark:bg-primary-600 dark:text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200'
                       }`}
                   >
                     {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -105,13 +105,13 @@ export default function ShopPage() {
             </div>
 
             <div>
-              <h2 className="font-bold text-lg mb-4">Collections</h2>
+              <h2 className="font-bold text-lg mb-4 dark:text-white">Collections</h2>
               <div className="space-y-2">
                 <button
                   onClick={() => setSelectedCollection('all')}
                   className={`block w-full text-left p-2 rounded ${selectedCollection === 'all'
-                    ? 'bg-primary-100 text-primary-700 font-semibold'
-                    : 'hover:bg-gray-100'
+                    ? 'bg-primary-100 text-primary-700 font-semibold dark:bg-primary-600 dark:text-white'
+                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200'
                     }`}
                 >
                   All Collections
@@ -121,8 +121,8 @@ export default function ShopPage() {
                     key={collection.id}
                     onClick={() => setSelectedCollection(collection.slug)}
                     className={`block w-full text-left p-2 rounded ${selectedCollection === collection.slug
-                      ? 'bg-primary-100 text-primary-700 font-semibold'
-                      : 'hover:bg-gray-100'
+                      ? 'bg-primary-100 text-primary-700 font-semibold dark:bg-primary-600 dark:text-white'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200'
                       }`}
                   >
                     {collection.name}
@@ -147,7 +147,7 @@ export default function ShopPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredAndSortedProducts.map((product) => (
               <div
                 key={product.id}
