@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { products } from '@/data/products'
+import { products, collections } from '@/data/products'
 
 export default function Home() {
   const featuredProducts = products.slice(0, 8)
@@ -13,7 +13,7 @@ export default function Home() {
             Professor's candle-shop
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Premium handmade candles for every season and occasion. 
+            Premium handmade candles for every season and occasion.
             Create the perfect ambiance in your home.
           </p>
           <Link
@@ -32,7 +32,7 @@ export default function Home() {
             <h2 className="text-3xl font-gravitas font-bold text-gray-900 dark:text-white mb-4">Featured Products</h2>
             <p className="text-gray-600 dark:text-gray-400">Discover our most popular candles</p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
               <Link
@@ -102,15 +102,31 @@ export default function Home() {
             <h2 className="text-3xl font-gravitas font-bold text-gray-900 dark:text-white mb-4">Shop by Collection</h2>
             <p className="text-gray-600 dark:text-gray-400">Find the perfect candle for every season</p>
           </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {['Christmas Special', 'Autumn Fever', 'Spring Flower', 'Aromatherapy'].map((collection) => (
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {collections.slice(0, 8).map((collection) => (
               <Link
-                key={collection}
-                href={`/collection/${collection.toLowerCase().replace(' ', '-')}`}
-                className="bg-white dark:bg-gray-700 rounded-lg p-6 text-center shadow-md hover:shadow-xl transition-shadow hover:bg-primary-50 dark:hover:bg-gray-600"
+                key={collection.id}
+                href={`/collection/${collection.slug}`}
+                className="group bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
               >
-                <h3 className="font-semibold text-lg dark:text-white">{collection}</h3>
+                {collection.image && (
+                  <div className="relative aspect-square overflow-hidden">
+                    <img
+                      src={collection.image}
+                      alt={collection.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                      <h3 className="font-semibold text-lg text-white p-4 w-full">{collection.name}</h3>
+                    </div>
+                  </div>
+                )}
+                {!collection.image && (
+                  <div className="p-6 text-center">
+                    <h3 className="font-semibold text-lg dark:text-white">{collection.name}</h3>
+                  </div>
+                )}
               </Link>
             ))}
           </div>

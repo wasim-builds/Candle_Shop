@@ -627,16 +627,138 @@ export const products: Product[] = [
 ];
 
 export const collections: Collection[] = [
-  { id: '1', name: 'Beverage & Cafe Collection', slug: 'beverage-cafe' },
-  { id: '2', name: 'Teddy & Character Collection', slug: 'teddy-character' },
-  { id: '3', name: 'Floral & Garden Collection', slug: 'floral-garden' },
-  { id: '4', name: 'Gourmet Collection', slug: 'gourmet' },
-  { id: '5', name: 'Seasonal Collection', slug: 'seasonal' },
-  { id: '6', name: 'Essentials', slug: 'essentials' },
-  { id: '7', name: 'Wax Melts', slug: 'wax-melts' },
-  { id: '8', name: 'Christmas', slug: 'christmas' },
-  { id: '9', name: 'Halloween', slug: 'halloween' },
-  { id: '10', name: 'Valentine', slug: 'valentine' },
-  { id: '11', name: 'Autumn', slug: 'autumn' },
+  {
+    id: '1',
+    name: 'Beverage & Cafe Collection',
+    slug: 'beverage-cafe',
+    image: '/images/matcha/WhatsApp Image 2025-12-17 at 9.53.46 AM.jpeg',
+    description: 'Refreshing beverage-inspired candles with cafe vibes'
+  },
+  {
+    id: '2',
+    name: 'Teddy & Character Collection',
+    slug: 'teddy-character',
+    image: '/images/couple.jpeg',
+    description: 'Adorable character candles perfect for gifts'
+  },
+  {
+    id: '3',
+    name: 'Floral & Garden Collection',
+    slug: 'floral-garden',
+    image: '/images/wondenBowls/WhatsApp Image 2025-12-17 at 9.39.29 AM.jpeg',
+    description: 'Beautiful floral arrangements and garden-inspired candles'
+  },
+  {
+    id: '4',
+    name: 'Gourmet Collection',
+    slug: 'gourmet',
+    image: '/images/StawberryGlass/WhatsApp Image 2025-12-17 at 9.48.20 AM.jpeg',
+    description: 'Sweet and delicious gourmet-themed candles'
+  },
+  {
+    id: '5',
+    name: 'Seasonal Collection',
+    slug: 'seasonal',
+    image: '/images/pumpkin_glass.jpeg',
+    description: 'Celebrate every season with themed candles'
+  },
+  {
+    id: '6',
+    name: 'Essentials',
+    slug: 'essentials',
+    image: '/images/tealightcandles/WhatsApp Image 2025-12-17 at 9.55.38 AM.jpeg',
+    description: 'Everyday candles and home fragrance essentials'
+  },
+  {
+    id: '7',
+    name: 'Wax Melts',
+    slug: 'wax-melts',
+    image: '/images/waxmelts/WhatsApp Image 2025-12-17 at 9.36.35 AM.jpeg',
+    description: 'Aromatic wax melts for lasting fragrance'
+  },
+  {
+    id: '8',
+    name: 'Christmas',
+    slug: 'christmas',
+    image: '/images/gingerBreadCandle/WhatsApp Image 2025-12-17 at 9.45.08 AM (1).jpeg',
+    description: 'Festive Christmas-themed candles'
+  },
+  {
+    id: '9',
+    name: 'Halloween',
+    slug: 'halloween',
+    image: '/images/pumpkinglass.jpeg',
+    description: 'Spooky and fun Halloween candles'
+  },
+  {
+    id: '10',
+    name: 'Valentine',
+    slug: 'valentine',
+    image: '/images/WhatsApp Image 2025-12-17 at 10.00.56 AM.jpeg',
+    description: 'Romantic candles for Valentine\'s Day'
+  },
+  {
+    id: '11',
+    name: 'Autumn',
+    slug: 'autumn',
+    image: '/images/pumpkin_glass.jpeg',
+    description: 'Cozy autumn-themed candles'
+  },
+  {
+    id: '12',
+    name: 'Christmas Special',
+    slug: 'christmas-special',
+    image: '/images/collections/christmas-special.png',
+    description: 'Special edition Christmas candles for the holiday season'
+  },
+  {
+    id: '13',
+    name: 'Autumn Fever',
+    slug: 'autumn-fever',
+    image: '/images/collections/autumn-fever.png',
+    description: 'Warm autumn-inspired candles with seasonal fragrances'
+  },
+  {
+    id: '14',
+    name: 'Home Decor',
+    slug: 'home-decor',
+    image: '/images/collections/home-decor.png',
+    description: 'Decorative candles to enhance your home ambiance'
+  },
+  {
+    id: '15',
+    name: 'Spring Flower',
+    slug: 'spring-flower',
+    image: '/images/collections/spring-flower.png',
+    description: 'Fresh spring floral candles with delicate scents'
+  },
+  {
+    id: '16',
+    name: 'Aromatherapy',
+    slug: 'aromatherapy',
+    image: '/images/collections/aromatherapy.png',
+    description: 'Therapeutic candles for relaxation and wellness'
+  },
+  {
+    id: '17',
+    name: 'Whipped Wax',
+    slug: 'whipped-wax',
+    image: '/images/collections/whipped-wax.png',
+    description: 'Luxurious whipped wax candles with unique textures'
+  },
+  {
+    id: '18',
+    name: 'Waxmelts',
+    slug: 'waxmelts',
+    image: '/images/waxmelts/WhatsApp Image 2025-12-17 at 9.36.35 AM.jpeg',
+    description: 'Premium wax melts in various fragrances'
+  },
+  {
+    id: '19',
+    name: 'Limited Editions',
+    slug: 'limited-editions',
+    image: '/images/collections/limited-editions.png',
+    description: 'Exclusive limited edition candles - available while supplies last'
+  },
 ];
 
