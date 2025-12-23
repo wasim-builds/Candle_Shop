@@ -7,6 +7,7 @@ import { Product } from '@/types'
 import { FiHeart, FiShoppingCart } from 'react-icons/fi'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
+import ProductCard from '@/components/ProductCard'
 
 type SortOption = 'popularity' | 'latest' | 'price-low' | 'price-high'
 
@@ -64,12 +65,12 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-4xl font-gravitas font-bold mb-8">SHOP ALL PRODUCTS</h1>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filters Sidebar */}
-        <aside className={`lg:w-64 ${showFilters ? 'block' : 'hidden'} lg:block`}>
+        <aside className={`lg:w-56 ${showFilters ? 'block' : 'hidden'} lg:block`}>
           <div className="bg-white p-6 rounded-lg shadow-md sticky top-24">
             <div className="mb-6">
               <h2 className="font-bold text-lg mb-4">Sort by</h2>
@@ -92,11 +93,10 @@ export default function ShopPage() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`block w-full text-left p-2 rounded ${
-                      selectedCategory === category
-                        ? 'bg-primary-100 text-primary-700 font-semibold'
-                        : 'hover:bg-gray-100'
-                    }`}
+                    className={`block w-full text-left p-2 rounded ${selectedCategory === category
+                      ? 'bg-primary-100 text-primary-700 font-semibold'
+                      : 'hover:bg-gray-100'
+                      }`}
                   >
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </button>
@@ -109,11 +109,10 @@ export default function ShopPage() {
               <div className="space-y-2">
                 <button
                   onClick={() => setSelectedCollection('all')}
-                  className={`block w-full text-left p-2 rounded ${
-                    selectedCollection === 'all'
-                      ? 'bg-primary-100 text-primary-700 font-semibold'
-                      : 'hover:bg-gray-100'
-                  }`}
+                  className={`block w-full text-left p-2 rounded ${selectedCollection === 'all'
+                    ? 'bg-primary-100 text-primary-700 font-semibold'
+                    : 'hover:bg-gray-100'
+                    }`}
                 >
                   All Collections
                 </button>
@@ -121,11 +120,10 @@ export default function ShopPage() {
                   <button
                     key={collection.id}
                     onClick={() => setSelectedCollection(collection.slug)}
-                    className={`block w-full text-left p-2 rounded ${
-                      selectedCollection === collection.slug
-                        ? 'bg-primary-100 text-primary-700 font-semibold'
-                        : 'hover:bg-gray-100'
-                    }`}
+                    className={`block w-full text-left p-2 rounded ${selectedCollection === collection.slug
+                      ? 'bg-primary-100 text-primary-700 font-semibold'
+                      : 'hover:bg-gray-100'
+                      }`}
                   >
                     {collection.name}
                   </button>
@@ -149,7 +147,7 @@ export default function ShopPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-6">
             {filteredAndSortedProducts.map((product) => (
               <div
                 key={product.id}
@@ -213,11 +211,10 @@ export default function ShopPage() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleWishlist(product)}
-                      className={`p-2 rounded ${
-                        isInWishlist(product.id)
-                          ? 'bg-primary-600 text-white'
-                          : 'bg-gray-100 hover:bg-gray-200'
-                      } transition-colors`}
+                      className={`p-2 rounded ${isInWishlist(product.id)
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-gray-100 hover:bg-gray-200'
+                        } transition-colors`}
                       title={isInWishlist(product.id) ? 'Remove from wishlist' : 'Add to wishlist'}
                     >
                       <FiHeart className="w-4 h-4" />

@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-900 py-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-[1600px] mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-gravitas font-bold text-gray-900 dark:text-white mb-4">
             Professor's candle-shop
           </h1>
@@ -27,13 +27,13 @@ export default function Home() {
 
       {/* Featured Products */}
       <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-gravitas font-bold text-gray-900 dark:text-white mb-4">Featured Products</h2>
             <p className="text-gray-600 dark:text-gray-400">Discover our most popular candles</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-6">
             {featuredProducts.map((product) => (
               <Link
                 key={product.id}
@@ -97,7 +97,7 @@ export default function Home() {
 
       {/* Collections Section */}
       <section className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-gravitas font-bold text-gray-900 dark:text-white mb-4">Shop by Collection</h2>
             <p className="text-gray-600 dark:text-gray-400">Find the perfect candle for every season</p>

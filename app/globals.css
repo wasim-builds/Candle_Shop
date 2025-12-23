@@ -2,16 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  /* Warm Color Palette */
+  --primary: #8B7355;
+  --primary-light: #A68968;
+  --primary-dark: #6B5742;
+  --secondary: #E8DCC4;
+  --accent: #C9A882;
+  --dark: #2C2C2C;
+  --light: #FAF8F5;
+  --cream: #F5F1E8;
+  --warm-white: #FFFBF5;
+  
+  /* Semantic Colors */
+  --success: #7C9A7B;
+  --error: #C85A54;
+  --warning: #D4A574;
+  --info: #7B9AA8;
+  
+  /* Gradients */
+  --gradient-warm: linear-gradient(135deg, #E8DCC4 0%, #C9A882 100%);
+  --gradient-dark: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -21,35 +55,157 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--dark);
+  background-color: var(--warm-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--dark);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--cream);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: var(--primary);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--primary-dark);
 }
 
+/* Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn var(--transition-slow) ease-in;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp var(--transition-base) ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn var(--transition-base) ease-out;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  border: 2px solid var(--primary);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Section Spacing */
+.section {
+  padding: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+}
