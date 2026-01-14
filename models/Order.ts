@@ -91,12 +91,11 @@ const OrderSchema = new Schema<IOrder>(
 );
 
 // Generate order number before saving
-OrderSchema.pre('save', async function (next) {
+OrderSchema.pre('save', async function () {
     if (!this.orderNumber) {
         const count = await mongoose.model('Order').countDocuments();
         this.orderNumber = `ORD-${Date.now()}-${count + 1}`;
     }
-    next();
 });
 
 const Order: Model<IOrder> = mongoose.models.Order || mongoose.model<IOrder>('Order', OrderSchema);

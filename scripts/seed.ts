@@ -28,14 +28,11 @@ async function seedDatabase() {
             price: product.price,
             originalPrice: product.originalPrice,
             category: product.category,
-            collection: product.collection,
-            images: [product.image], // Convert single image to array
-            stock: 50, // Default stock
+            collections: product.collections,
+            images: product.images || [product.image],
+            stock: product.stockCount || 50,
             isNew: product.isNew || false,
             isSale: product.isSale || false,
-            scent: product.scent,
-            burnTime: product.burnTime,
-            size: product.size,
         }));
 
         const insertedProducts = await Product.insertMany(productsToInsert);
