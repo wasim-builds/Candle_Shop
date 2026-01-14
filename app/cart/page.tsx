@@ -1,11 +1,67 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useCart } from '@/contexts/CartContext'
+import { useAdmin } from '@/contexts/AdminContext'
 import { FiTrash2, FiPlus, FiMinus, FiArrowLeft, FiShoppingBag } from 'react-icons/fi'
+import { useState } from 'react'
 
 export default function CartPage() {
+  const router = useRouter()
   const { cartItems, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart()
+  const { addOrder } = useAdmin()
+  const [isCheckingOut, setIsCheckingOut] = useState(false)
+
+  const handleCheckout = () => {
+    // Check if user is logged in
+    const user = localStorage.getItem('user')
+    if (!user) {
+      router.push('/login?redirect=/cart')
+      return
+    }
+
+    setIsCheckingOut(true)
+
+    // Create order from cart
+    const userData = JSON.parse(user)
+    const subtotal = getTotalPrice()
+    const shipping = subtotal >= 999 ? 0 : 50
+    const tax = subtotal * 0.1 // 10% tax
+    const total = subtotal + shipping + tax
+
+    const orderData = {
+      customer: {
+        name: userData.name || userData.email.split('@')[0],
+        email: userData.email,
+        phone: '+91 98765 43210',
+        address: '123 Main Street',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        zipCode: '400001',
+      },
+      items: cartItems.map(item => ({
+        product: item.product,
+        variant: item.variant,
+        quantity: item.quantity,
+        price: item.variant ? item.variant.price : item.product.price,
+      })),
+      subtotal,
+      shipping,
+      tax,
+      total,
+      status: 'pending' as const,
+    }
+
+    addOrder(orderData)
+    clearCart()
+
+    // Show success and redirect
+    setTimeout(() => {
+      alert('Order placed successfully! Check the admin dashboard to view your order.')
+      router.push('/')
+    }, 500)
+  }
 
   if (cartItems.length === 0) {
     return (
@@ -121,11 +177,15 @@ export default function CartPage() {
                   {getTotalPrice() >= 999 ? 'FREE' : '₹50.00'}
                 </span>
               </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Tax (10%)</span>
+                <span className="font-semibold">₹{(getTotalPrice() * 0.1).toFixed(2)}</span>
+              </div>
               <div className="border-t pt-4">
                 <div className="flex justify-between text-xl font-bold">
                   <span>Total</span>
                   <span className="text-primary-600">
-                    ₹{(getTotalPrice() + (getTotalPrice() >= 999 ? 0 : 50)).toFixed(2)}
+                    ₹{(getTotalPrice() + (getTotalPrice() >= 999 ? 0 : 50) + (getTotalPrice() * 0.1)).toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -137,8 +197,12 @@ export default function CartPage() {
               </p>
             )}
 
-            <button className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors mb-4">
-              Proceed to Checkout
+            <button
+              onClick={handleCheckout}
+              disabled={isCheckingOut}
+              className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors mb-4 disabled:opacity-50"
+            >
+              {isCheckingOut ? 'Processing...' : 'Proceed to Checkout'}
             </button>
 
             <button

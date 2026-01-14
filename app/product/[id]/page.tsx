@@ -164,7 +164,7 @@ export default function ProductPage() {
           <div className="flex gap-4 mb-6">
             <button
               onClick={handleAddToCart}
-              disabled={!product.inStock || (selectedVariant && !selectedVariant.inStock)}
+              disabled={!product.inStock || !!(selectedVariant && !selectedVariant.inStock)}
               className="flex-1 bg-primary-600 text-white py-3 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center gap-2 font-semibold disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               <FiShoppingCart className="w-5 h-5" />

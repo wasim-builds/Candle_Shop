@@ -76,8 +76,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-gravitas font-bold text-gray-900 dark:text-white">
-            Professor's candle-shop
+          <Link href="/" className="text-2xl font-gravitas font-bold text-gray-900 dark:text-white tracking-tight">
+            Professor's Candle Shop
           </Link>
 
           {/* Desktop Navigation */}
@@ -186,6 +186,13 @@ export default function Header() {
                       <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
                     </div>
                     <Link
+                      href="/admin"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm dark:text-gray-200"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      Admin Dashboard
+                    </Link>
+                    <Link
                       href="/profile"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm dark:text-gray-200"
                       onClick={() => setIsUserMenuOpen(false)}
@@ -280,15 +287,24 @@ export default function Header() {
               CONTACT
             </Link>
             {user ? (
-              <button
-                onClick={() => {
-                  handleLogout()
-                  setIsMenuOpen(false)
-                }}
-                className="block w-full text-left py-2 hover:text-primary-600 dark:hover:text-primary-400 text-red-600 dark:text-red-400"
-              >
-                LOGOUT
-              </button>
+              <>
+                <Link
+                  href="/admin"
+                  className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  ADMIN DASHBOARD
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLogout()
+                    setIsMenuOpen(false)
+                  }}
+                  className="block w-full text-left py-2 hover:text-primary-600 dark:hover:text-primary-400 text-red-600 dark:text-red-400"
+                >
+                  LOGOUT
+                </button>
+              </>
             ) : (
               <Link
                 href="/login"

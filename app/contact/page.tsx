@@ -29,8 +29,8 @@ export default function ContactPage() {
               <h3 className="font-semibold mb-2">Address</h3>
               <p className="text-gray-700">
                 123 Candle Street<br />
-                Amsterdam, Netherlands<br />
-                1234 AB
+                Vijayawada, Amaravathi<br />
+                Andhra Pradesh, India
               </p>
             </div>
 

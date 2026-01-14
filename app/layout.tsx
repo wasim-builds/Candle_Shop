@@ -5,14 +5,14 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Providers from '@/components/Providers'
 
-const gravitasOne = Gravitas_One({ 
+const gravitasOne = Gravitas_One({
   subsets: ['latin'],
   variable: '--font-gravitas',
   weight: '400',
 })
 
 export const metadata: Metadata = {
-  title: "Professor's candle-shop - Premium Handmade Candles",
+  title: "Professor's Candle Shop - Premium Handmade Candles",
   description: 'Discover our collection of premium handmade candles for every season and occasion.',
 }
 
