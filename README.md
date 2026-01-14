@@ -112,14 +112,36 @@ Modify `tailwind.config.js` to customize colors, fonts, and other design tokens.
 ### Collections
 Update the `collections` array in `data/products.ts` to add or modify collections.
 
+## Admin Dashboard
+
+The application includes a comprehensive admin dashboard with:
+
+- **Product Management**: Add, edit, delete products
+- **Order Management**: View and update order status
+- **Analytics**: Sales charts and statistics
+- **Real-time Stats**: Revenue, orders, customers tracking
+- **Alerts**: Low stock and pending order notifications
+
+Access the admin dashboard at `/admin` after deployment.
+
+## Deployment
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
+Quick deploy to Vercel:
+1. Push code to GitHub
+2. Import project in Vercel
+3. Add environment variables (MongoDB URI, NextAuth secret)
+4. Deploy!
+
 ## Future Enhancements
 
-- User authentication
-- Payment integration
-- Order history
+- User authentication with NextAuth
+- Payment integration (Razorpay ready)
+- Order history for customers
 - Product reviews and ratings
 - Advanced search functionality
-- Admin dashboard
+- Email notifications (SendGrid ready)
 - Backend API integration
 - Image optimization
 - SEO improvements
@@ -127,4 +149,5 @@ Update the `collections` array in `data/products.ts` to add or modify collection
 ## License
 
 This project is open source and available under the MIT License.
+
 
