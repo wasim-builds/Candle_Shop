@@ -137,7 +137,7 @@ export default function SearchBar() {
 
             {/* Mobile Search Modal */}
             {isMobileSearchOpen && (
-                <div className="fixed inset-0 bg-black/50 z-50 md:hidden">
+                <div className="fixed inset-0 bg-black/50 z-[100] md:hidden">
                     <div className="bg-white dark:bg-gray-900 h-full">
                         <div className="p-4">
                             <div className="flex items-center gap-3 mb-4">

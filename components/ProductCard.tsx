@@ -77,7 +77,7 @@ export default function ProductCard({
             {/* Product Info */}
             <div className="p-4">
                 <Link href={`/product/${product.id}`}>
-                    <h3 className="font-display text-lg text-gray-900 mb-2 hover:text-primary transition-colors line-clamp-2">
+                    <h3 className="font-display text-sm sm:text-base md:text-lg text-gray-900 mb-2 hover:text-primary transition-colors line-clamp-2">
                         {product.name}
                     </h3>
                 </Link>
@@ -99,7 +99,7 @@ export default function ProductCard({
                             {Math.max(...product.variants.map(v => v.price)).toFixed(2)}
                         </span>
                     ) : (
-                        <span className="text-gray-900 font-semibold text-xl">
+                        <span className="text-gray-900 font-semibold text-lg sm:text-xl">
                             ₹{product.price.toFixed(2)}
                         </span>
                     )}
@@ -110,14 +110,14 @@ export default function ProductCard({
                     product.variants && product.variants.length > 0 ? (
                         <Link
                             href={`/product/${product.id}`}
-                            className="w-full btn-secondary text-center block py-2 text-sm"
+                            className="w-full btn-secondary text-center block py-1.5 sm:py-2 text-xs sm:text-sm"
                         >
                             Select Options
                         </Link>
                     ) : onAddToCart ? (
                         <button
                             onClick={() => onAddToCart(product)}
-                            className="w-full btn-primary py-2 text-sm flex items-center justify-center gap-2"
+                            className="w-full btn-primary py-1.5 sm:py-2 text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2"
                         >
                             <FiShoppingCart className="w-4 h-4" />
                             Add to Cart

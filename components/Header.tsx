@@ -245,14 +245,14 @@ export default function Header() {
           <nav className="px-4 py-4 space-y-2">
             <Link
               href="/"
-              className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+              className="block py-3 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
               onClick={() => setIsMenuOpen(false)}
             >
               HOME
             </Link>
             <Link
               href="/shop"
-              className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+              className="block py-3 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
               onClick={() => setIsMenuOpen(false)}
             >
               SHOP ALL
@@ -264,7 +264,7 @@ export default function Header() {
                   <Link
                     key={collection.id}
                     href={`/collection/${collection.slug}`}
-                    className="block py-1 text-sm hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-300"
+                    className="block py-2 text-sm hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-300"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {collection.name}
@@ -274,14 +274,14 @@ export default function Header() {
             </div>
             <Link
               href="/sale"
-              className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+              className="block py-3 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
               onClick={() => setIsMenuOpen(false)}
             >
               SALE
             </Link>
             <Link
               href="/contact"
-              className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+              className="block py-3 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
               onClick={() => setIsMenuOpen(false)}
             >
               CONTACT
@@ -290,7 +290,7 @@ export default function Header() {
               <>
                 <Link
                   href="/admin"
-                  className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+                  className="block py-3 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   ADMIN DASHBOARD
@@ -300,7 +300,7 @@ export default function Header() {
                     handleLogout()
                     setIsMenuOpen(false)
                   }}
-                  className="block w-full text-left py-2 hover:text-primary-600 dark:hover:text-primary-400 text-red-600 dark:text-red-400"
+                  className="block w-full text-left py-3 hover:text-primary-600 dark:hover:text-primary-400 text-red-600 dark:text-red-400"
                 >
                   LOGOUT
                 </button>
@@ -308,7 +308,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/login"
-                className="block py-2 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
+                className="block py-3 hover:text-primary-600 dark:hover:text-primary-400 dark:text-gray-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 LOGIN
