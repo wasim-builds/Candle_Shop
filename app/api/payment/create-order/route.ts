@@ -6,10 +6,8 @@ import connectDB from '@/lib/mongodb';
 import Order from '@/models/Order';
 import Payment from '@/models/Payment';
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID!,
-    key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
+
+
 
 export async function POST(req: NextRequest) {
     try {
@@ -17,6 +15,11 @@ export async function POST(req: NextRequest) {
         if (!session) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
+
+        const razorpay = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID!,
+            key_secret: process.env.RAZORPAY_KEY_SECRET!,
+        });
 
         await connectDB();
 
