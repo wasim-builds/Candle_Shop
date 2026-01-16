@@ -8,28 +8,33 @@ export default function HeroSection() {
                 <div className="grid lg:grid-cols-2 gap-12 items-center py-16 lg:py-24">
                     {/* Text Content */}
                     <div className="text-center lg:text-left animate-fade-in">
+                        {/* Seasonal Badge */}
+                        <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-red-100 via-pink-100 to-emerald-100 dark:from-red-900/30 dark:via-pink-900/30 dark:to-emerald-900/30 text-gray-800 dark:text-gray-200 rounded-full text-sm font-semibold">
+                            ✨ Seasonal Collections - Limited Edition
+                        </div>
+
                         <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-                            Handcrafted Candles for Every Moment
+                            Celebrate Every Moment
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
-                            Transform your space with our premium, hand-poured candles.
-                            Each piece is crafted with love and the finest ingredients.
+                            Discover our exclusive seasonal collections for Valentine's, Ramadan, Holi, Easter, Mother's Day, and Eid.
+                            Handcrafted candles perfect for every celebration.
                         </p>
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <Link
                                 href="/shop"
-                                className="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center gap-2 group"
+                                className="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center gap-2 group bg-gradient-to-r from-primary to-secondary hover:from-primary-600 hover:to-secondary-600"
                             >
-                                Shop Collection
+                                Shop All Collections
                                 <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                             <Link
-                                href="/collection/christmas-special"
-                                className="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center"
+                                href="/collection/seasonal"
+                                className="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center bg-gray-900 text-white hover:bg-gray-800"
                             >
-                                Holiday Specials
+                                View Seasonal Collections
                             </Link>
                         </div>
 
