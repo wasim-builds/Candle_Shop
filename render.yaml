@@ -1,0 +1,61 @@
+# Render Blueprint for Candle Shop
+# This file defines the infrastructure for your application
+
+services:
+  # Web Service - Next.js Application
+  - type: web
+    name: candle-shop
+    runtime: docker
+    repo: https://github.com/wasim-builds/Candle_Shop # Update with your repo URL
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    
+    # Environment variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+      
+      - key: MONGODB_URI
+        sync: false # Set manually in Render dashboard
+      
+      - key: NEXTAUTH_SECRET
+        generateValue: true # Render will auto-generate
+      
+      - key: NEXTAUTH_URL
+        sync: false # Set to your Render URL after first deploy
+    
+    # Health check
+    healthCheckPath: /
+    
+    # Auto-deploy on push
+    autoDeploy: true
+    
+    # Instance configuration
+    # Free tier: comment out the plan line
+    # Paid tier: uncomment and choose plan
+    # plan: starter # or standard, pro
+    
+    # Scaling (for paid plans)
+    # numInstances: 1
+    
+    # Region - choose closest to your users
+    # region: singapore # or oregon, frankfurt, ohio
+    
+    # Build filter - only deploy on changes to these paths
+    buildFilter:
+      paths:
+        - app/**
+        - components/**
+        - public/**
+        - package.json
+        - Dockerfile
+        - next.config.js
+
+# Optional: Add a cron job for cleanup tasks
+# - type: cron
+#   name: cleanup-job
+#   runtime: docker
+#   schedule: "0 0 * * *" # Daily at midnight
+#   dockerfilePath: ./Dockerfile
+#   dockerCommand: node scripts/cleanup.js
