@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { SessionProvider } from 'next-auth/react'
+import { Toaster } from 'react-hot-toast'
 import { CartProvider } from '@/contexts/CartContext'
 import { WishlistProvider } from '@/contexts/WishlistContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
@@ -14,6 +15,7 @@ export default function Providers({ children }: { children: ReactNode }) {
         <AdminProvider>
           <CartProvider>
             <WishlistProvider>
+              <Toaster position="top-center" reverseOrder={false} />
               {children}
             </WishlistProvider>
           </CartProvider>

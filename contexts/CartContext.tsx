@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { CartItem, Product, ProductVariant } from '@/types'
+import toast from 'react-hot-toast'
 
 interface CartContextType {
   cartItems: CartItem[]
@@ -49,6 +50,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
       return [...prev, { product, variant, quantity }]
     })
+    toast.success('Added to cart')
   }
 
   const removeFromCart = (itemId: string) => {
