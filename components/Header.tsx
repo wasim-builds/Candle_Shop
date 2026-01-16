@@ -10,19 +10,21 @@ import { useTheme } from '@/contexts/ThemeContext'
 import SearchBar from './SearchBar'
 import { collections } from '@/data/products'
 import CartPreview from './CartPreview'
+import { useSession, signOut } from 'next-auth/react'
 
 export default function Header() {
   const router = useRouter()
+  const { data: session, status } = useSession()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const [user, setUser] = useState<any>(null)
   const { cartItems } = useCart()
   const { wishlistItems } = useWishlist()
   const { theme, toggleTheme } = useTheme()
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
   const wishlistCount = wishlistItems.length
+  const user = session?.user
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,14 +32,6 @@ export default function Header() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    // Check if user is logged in
-    const userData = localStorage.getItem('user')
-    if (userData) {
-      setUser(JSON.parse(userData))
-    }
   }, [])
 
   useEffect(() => {
@@ -59,10 +53,8 @@ export default function Header() {
   }, [isUserMenuOpen])
 
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    setUser(null)
+    signOut({ callbackUrl: '/' })
     setIsUserMenuOpen(false)
-    router.push('/')
   }
 
   return (

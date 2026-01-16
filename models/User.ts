@@ -7,6 +7,11 @@ export interface IUser {
     name: string;
     phone?: string;
     role: 'customer' | 'admin';
+    emailVerified: boolean;
+    phoneVerified: boolean;
+    wishlist: mongoose.Types.ObjectId[];
+    lastLogin?: Date;
+    isActive: boolean;
     addresses: {
         street: string;
         city: string;
@@ -53,6 +58,23 @@ const UserSchema = new Schema<IUser>(
             type: String,
             enum: ['customer', 'admin'],
             default: 'customer',
+        },
+        emailVerified: {
+            type: Boolean,
+            default: false,
+        },
+        phoneVerified: {
+            type: Boolean,
+            default: false,
+        },
+        wishlist: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Product',
+        }],
+        lastLogin: Date,
+        isActive: {
+            type: Boolean,
+            default: true,
         },
         addresses: [AddressSchema],
     },

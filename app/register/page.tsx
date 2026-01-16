@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FiMail, FiLock, FiUser, FiArrowLeft } from 'react-icons/fi'
+import { signIn } from 'next-auth/react'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -38,19 +39,42 @@ export default function RegisterPage() {
 
     setIsLoading(true)
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Registration attempt:', formData.email)
-      
-      // Store user session
-      localStorage.setItem('user', JSON.stringify({ 
-        name: formData.name,
-        email: formData.email 
-      }))
-      
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Registration failed')
+      }
+
+      // Auto login after registration
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+      })
+
+      if (result?.error) {
+        router.push('/login')
+      } else {
+        router.push('/')
+        router.refresh()
+      }
+    } catch (err: any) {
+      setError(err.message)
       setIsLoading(false)
-      router.push('/')
-    }, 1000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FiMail, FiLock, FiArrowLeft } from 'react-icons/fi'
+import { signIn } from 'next-auth/react'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -19,25 +20,30 @@ export default function LoginPage() {
     setError('')
     setIsLoading(true)
 
-    // Basic validation
     if (!formData.email || !formData.password) {
       setError('Please fill in all fields')
       setIsLoading(false)
       return
     }
 
-    // Simulate API call
-    setTimeout(() => {
-      // For demo purposes, accept any email/password
-      // In production, this would call your authentication API
-      console.log('Login attempt:', formData.email)
-      
-      // Store user session (in production, use proper session management)
-      localStorage.setItem('user', JSON.stringify({ email: formData.email }))
-      
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+      })
+
+      if (result?.error) {
+        setError('Invalid email or password')
+        setIsLoading(false)
+      } else {
+        router.push('/')
+        router.refresh()
+      }
+    } catch (err) {
+      setError('An error occurred during login')
       setIsLoading(false)
-      router.push('/')
-    }, 1000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
