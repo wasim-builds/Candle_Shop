@@ -22,13 +22,13 @@ export async function POST(req: NextRequest) {
         const orderNumber = `ORD-${timestamp}-${random}`;
 
         // Create order
-        const order = await Order.create({
+        const order: any = await Order.create({
             userId: session.user.id,
             orderNumber,
             items,
             shippingAddress,
             subtotal,
-            shippingCost: shipping,
+            shipping,
             total,
             status: 'pending',
             paymentStatus: 'pending',

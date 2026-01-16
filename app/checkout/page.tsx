@@ -28,8 +28,8 @@ export default function CheckoutPage() {
         if (session?.user) {
             setShippingAddress(prev => ({
                 ...prev,
-                name: session.user.name || '',
-                email: session.user.email || '',
+                name: session?.user?.name || '',
+                email: session?.user?.email || '',
             }))
         }
     }, [session])
@@ -68,7 +68,7 @@ export default function CheckoutPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     items: cartItems.map(item => ({
-                        product: item.product._id,
+                        product: item.product.id,
                         quantity: item.quantity,
                         price: item.variant ? item.variant.price : item.product.price,
                         variant: item.variant ? { name: item.variant.name, price: item.variant.price } : undefined
