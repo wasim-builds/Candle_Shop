@@ -1,0 +1,39 @@
+
+> candle-shop@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+Error: Please define the MONGODB_URI environment variable inside .env.local
+    at 2021 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:1836)
+    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
+    at 12000 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:568)
+    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
+    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3133)
+    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3167
+    at t.X (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:1206)
+    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3146
+    at Object.<anonymous> (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3194)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+Error: Please define the MONGODB_URI environment variable inside .env.local
+    at 2021 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:1:4243)
+    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
+    at 90455 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:1:3302)
+    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
+    at 37089 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:1:1727)
+    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
+    at n (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:3:177396)
+    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:3:177434
+    at t.X (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:1206)
+    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:3:177409
+
+> Build error occurred
+Error: Failed to collect page data for /api/auth/register
+    at /home/wasim/Documents/github/Candle_Shop/node_modules/next/dist/build/utils.js:1269:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  type: 'Error'
+}
