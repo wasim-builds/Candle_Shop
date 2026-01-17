@@ -13,13 +13,36 @@ export default function OrderDetailPage() {
     const params = useParams()
     const { orders, updateOrderStatus } = useAdmin()
     const [order, setOrder] = useState<Order | null>(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const foundOrder = orders.find(o => o.id === params.id)
-        if (foundOrder) {
-            setOrder(foundOrder)
+        const fetchOrder = async () => {
+            try {
+                const res = await fetch(`/api/orders/${params.id}`)
+                if (res.ok) {
+                    const data = await res.json()
+                    setOrder({
+                        ...data,
+                        id: data._id,
+                        createdAt: new Date(data.createdAt),
+                        updatedAt: new Date(data.updatedAt),
+                    })
+                }
+            } catch (error) {
+                console.error('Error fetching order:', error)
+            } finally {
+                setLoading(false)
+            }
         }
-    }, [params.id, orders])
+
+        if (params.id) {
+            fetchOrder()
+        }
+    }, [params.id])
+
+    if (loading) {
+        return <div className="p-12 text-center">Loading...</div>
+    }
 
     if (!order) {
         return (
@@ -34,8 +57,13 @@ export default function OrderDetailPage() {
 
     const statuses: OrderStatus[] = ['pending', 'processing', 'shipped', 'delivered', 'cancelled']
 
-    const handleStatusChange = (newStatus: OrderStatus) => {
-        updateOrderStatus(order.id, newStatus)
+    const handleStatusChange = async (newStatus: OrderStatus) => {
+        // updateOrderStatus(order.id, newStatus) // We can still use context to update list if we want, or rely on internal state
+        // For consistency, let's call the context method which calls the API, 
+        // OR simply call API here and update local state.
+
+        // Let's use the context method to ensure the global list is updated too!
+        updateOrderStatus(order!.id, newStatus)
         setOrder(prev => prev ? { ...prev, status: newStatus, updatedAt: new Date() } : null)
     }
 
@@ -170,8 +198,8 @@ export default function OrderDetailPage() {
                                     key={status}
                                     onClick={() => handleStatusChange(status)}
                                     className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors ${order.status === status
-                                            ? 'bg-primary-600 text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-primary-600 text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     {status.charAt(0).toUpperCase() + status.slice(1)}

@@ -34,7 +34,7 @@ export default function AddProductPage() {
         'Essentials & Home Fragrance',
     ]
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
 
@@ -54,7 +54,7 @@ export default function AddProductPage() {
             rating: formData.rating,
         }
 
-        addProduct(newProduct)
+        await addProduct(newProduct)
         router.push('/admin/products')
     }
 

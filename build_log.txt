@@ -3,37 +3,56 @@
 > next build
 
   ▲ Next.js 14.2.35
+  - Environments: .env.local
 
    Creating an optimized production build ...
  ✓ Compiled successfully
    Linting and checking validity of types ...
    Collecting page data ...
-Error: Please define the MONGODB_URI environment variable inside .env.local
-    at 2021 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:1836)
-    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
-    at 12000 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:568)
-    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
-    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3133)
-    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3167
-    at t.X (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:1206)
-    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3146
-    at Object.<anonymous> (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/auth/register/route.js:1:3194)
-    at Module._compile (node:internal/modules/cjs/loader:1521:14)
-Error: Please define the MONGODB_URI environment variable inside .env.local
-    at 2021 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:1:4243)
-    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
-    at 90455 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:1:3302)
-    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
-    at 37089 (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:1:1727)
-    at t (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:128)
-    at n (/home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:3:177396)
-    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:3:177434
-    at t.X (/home/wasim/Documents/github/Candle_Shop/.next/server/webpack-runtime.js:1:1206)
-    at /home/wasim/Documents/github/Candle_Shop/.next/server/app/api/payment/create-order/route.js:3:177409
+   Generating static pages (0/26) ...
+   Generating static pages (6/26) 
+   Generating static pages (12/26) 
+   Generating static pages (19/26) 
+ ✓ Generating static pages (26/26)
+   Finalizing page optimization ...
+   Collecting build traces ...
 
-> Build error occurred
-Error: Failed to collect page data for /api/auth/register
-    at /home/wasim/Documents/github/Candle_Shop/node_modules/next/dist/build/utils.js:1269:15
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
-  type: 'Error'
-}
+Route (app)                              Size     First Load JS
+┌ ○ /                                    1.97 kB         100 kB
+├ ○ /_not-found                          872 B          88.2 kB
+├ ○ /admin                               2.08 kB         112 kB
+├ ○ /admin/analytics                     1.35 kB         103 kB
+├ ○ /admin/orders                        5.07 kB         111 kB
+├ ƒ /admin/orders/[id]                   5.33 kB         111 kB
+├ ○ /admin/products                      5.09 kB         111 kB
+├ ○ /admin/products/add                  5.39 kB         111 kB
+├ ƒ /admin/products/edit/[id]            5.4 kB          111 kB
+├ ○ /admin/settings                      2.39 kB        91.7 kB
+├ ƒ /api/auth/[...nextauth]              0 B                0 B
+├ ƒ /api/auth/register                   0 B                0 B
+├ ƒ /api/orders/create                   0 B                0 B
+├ ƒ /api/payment/create-order            0 B                0 B
+├ ƒ /api/payment/verify                  0 B                0 B
+├ ƒ /api/user/profile                    0 B                0 B
+├ ○ /auth/error                          789 B          96.8 kB
+├ ○ /cart                                5.07 kB         117 kB
+├ ○ /checkout                            5.32 kB         119 kB
+├ ƒ /collection/[slug]                   2.23 kB         114 kB
+├ ○ /contact                             138 B          87.5 kB
+├ ○ /forgot-password                     2.15 kB         100 kB
+├ ○ /login                               2.22 kB         110 kB
+├ ○ /order-success                       1.54 kB        99.6 kB
+├ ƒ /product/[id]                        3.3 kB          115 kB
+├ ○ /register                            2.37 kB         110 kB
+├ ○ /sale                                1.97 kB         113 kB
+├ ○ /shop                                2.67 kB         114 kB
+└ ○ /wishlist                            1.88 kB         106 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/117-0472489a5b6c34e8.js       31.7 kB
+  ├ chunks/fd9d1056-562642139ce72f53.js  53.6 kB
+  └ other shared chunks (total)          1.95 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
